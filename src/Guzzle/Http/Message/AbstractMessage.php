@@ -238,7 +238,7 @@ abstract class AbstractMessage implements MessageInterface
     {
         $this->cacheControl = array();
         $cacheControl = $this->getHeader('Cache-Control');
-        if ($cacheControl) {
+        if (is_string($cacheControl)) {
             foreach (explode(',', $cacheControl) as $pieces) {
                 $parts = array_map('trim', explode('=', $pieces));
                 $this->cacheControl[$parts[0]] = isset($parts[1]) ? $parts[1] : true;
